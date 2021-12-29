@@ -5,7 +5,6 @@ const { type, json } = require('express/lib/response');
 const res = require('express/lib/response');
 const path = require('path');
 const app = express();
-const axios = require('axios');
 const { use } = require('express/lib/application');
 const { response } = require('express');
 const { readFile, writeFile } = require('fs/promises');
@@ -50,6 +49,7 @@ app.put('/users', async (req, res, next) => {
     }
 });
 
+// Delete
 app.delete('/:id', async (req, res) => {
     try {
         const removeId = req.params.id; // รับค่า params จาก url
@@ -64,6 +64,7 @@ app.delete('/:id', async (req, res) => {
     }
 });
 
+// Edit
 app.patch('/users/', async (req, res, next) => {
     const replaceId = req.body.id; // รับค่า params จาก url
     // console.log(req.body);
