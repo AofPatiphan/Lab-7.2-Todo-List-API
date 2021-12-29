@@ -31,7 +31,7 @@ app.put('/users', async (req, res, next) => {
         obj.id = uuidv4(); // gen new id
         obj.title = req.body.title; // รับค่าจาก body ที่ส่งมาทาง client จาก tag ที่ชื่อว่า "title"
         obj.completed = req.body.completed; // รับค่าจาก body ที่ส่งมาทาง client จาก tag ที่ชื่อว่า "completed"
-        obj.duedate = req.body.duedate; // สร้าง duedate ใหม่
+        obj.duedate = req.body.duedate; // รับค่าจาก body ที่ส่งมาทาง client จาก tag ที่ชื่อว่า "duedate"
         const result = [obj, ...data]; // ทำการเพิ่ม Object user เข้าไปใน Array users
         await save(result);
         return res.status(201).json({ result });
