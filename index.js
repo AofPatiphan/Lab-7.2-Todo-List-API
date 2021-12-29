@@ -10,21 +10,20 @@ app.use(express.urlencoded({ extended: false }));
 
 app.listen(8888, () => console.log('server is running on port 8888'));
 
-//find todo
+// fetch data
 const data = require('./todolist.json');
 
-// saveTodos
+// save data
 const save = async (result) => {
     await writeFile('todolist.json', JSON.stringify(result));
 };
 
-// Readfile
-app.get('/users', (req, res, next) => {
+// Read data
+app.get('/users', (req, res) => {
     res.json({ data });
-    next();
 });
 
-// Create
+// Create todos
 app.put('/users', async (req, res, next) => {
     try {
         const body = req.body;
@@ -41,7 +40,7 @@ app.put('/users', async (req, res, next) => {
     }
 });
 
-// Delete
+// Delete todos
 app.delete('/users/:id', async (req, res, next) => {
     try {
         const removeId = req.params.id; // รับค่า params จาก url
@@ -53,7 +52,7 @@ app.delete('/users/:id', async (req, res, next) => {
     }
 });
 
-// Edit
+// Edit todos
 app.patch('/users', async (req, res) => {
     const replaceId = req.body.id; // รับค่า params จาก url
     const position = data.findIndex(function (item) {
